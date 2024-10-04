@@ -2,10 +2,11 @@
 //
 
 #include <iostream>
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n"; // Eidted by Anav, testing Git using Visual Studio
+    cout << "Hello World!\n"; // Edited  by Vishant, testing Git using Visual Studio
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
