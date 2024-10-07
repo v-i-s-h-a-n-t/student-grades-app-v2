@@ -12,13 +12,6 @@ using namespace std;
 const int COL_WIDTH = 15;
 const int ROW_WIDTH = 55;
 
-struct Student
-{
-    string Id;
-    double coursework;
-    double finalExam;
-};
-
 // ---------------------------- Prototypes ---------------------------- //
 
 void readData(string filename, Student students[], int& studentCount, int capacity);
@@ -133,9 +126,18 @@ void readData(string filename, Student students[], int& studentCount, int capaci
     string headerOmit;
     getline(readFile, headerOmit);
 
+    string id;
+    double coursework;
+    double finalExam;
+
     // Fill array until capacity is not reached and data exists
-    while (!isFull && readFile >> students[studentCount].Id >> students[studentCount].coursework >> students[studentCount].finalExam)
+    while (!isFull && readFile >> id >> coursework >> finalExam)
     {
+        students[studentCount].setId(id);
+        students[studentCount].setCoursework(coursework);
+        students[studentCount].setFinalExam(finalExam);
+    
+
         studentCount++;
     }
 
@@ -155,11 +157,11 @@ void printTableHeader()
 // Helper function to print a table row (student details)
 void printTableRow(Student students)
 {
-    string grade = getGrade(students.coursework, students.finalExam);
+    string grade = getGrade(students.getCoursework(), students.getFinalExam());
 
-    cout << setw(COL_WIDTH) << students.Id
-        << setw(COL_WIDTH) << students.coursework
-        << setw(COL_WIDTH) << students.finalExam
+    cout << setw(COL_WIDTH) << students.getId()
+        << setw(COL_WIDTH) << students.getCoursework()
+        << setw(COL_WIDTH) << students.getFinalExam()
         << setw(COL_WIDTH) << grade << endl
         << printLine(ROW_WIDTH) << endl;
 }
@@ -176,12 +178,12 @@ void printAllStudents(Student students[], int studentCount)
 
 void printTopStudents(Student students[], int studentCount)
 {
-    double highestMark = students[0].coursework + students[0].finalExam;
+    double highestMark = students[0].getCoursework() + students[0].getFinalExam();
 
     //  Loop through all students and get highest mark
     for (int i = 0; i < studentCount; i++)
     {
-        double totalMark = students[i].coursework + students[i].finalExam;
+        double totalMark = students[i].getCoursework() + students[i].getFinalExam();
 
         if (totalMark >= highestMark)
         {
@@ -194,7 +196,7 @@ void printTopStudents(Student students[], int studentCount)
     // Loop through all students and print those with the highest mark
     for (int i = 0; i < studentCount; i++)
     {
-        double totalMark = students[i].coursework + students[i].finalExam;
+        double totalMark = students[i].getCoursework() + students[i].getFinalExam();
 
         if (totalMark == highestMark)
         {
@@ -215,7 +217,7 @@ double getAverageMark(Student students[], int studentCount)
 
     for (int i = 0; i < studentCount; i++)
     {
-        totalMarks += students[i].coursework + students[i].finalExam;
+        totalMarks += students[i].getCoursework() + students[i].getFinalExam();
     }
 
     return totalMarks / studentCount;
@@ -229,7 +231,7 @@ double getPassRate(Student students[], int studentCount)
 
     for (int i = 0; i < studentCount; i++)
     {
-        string grade = getGrade(students[i].coursework, students[i].finalExam);
+        string grade = getGrade(students[i].getCoursework(), students[i].getFinalExam());
 
         if (grade != "D" && grade != "E")
         {
@@ -300,7 +302,7 @@ void updateStudentMarks(Student students[], int studentCount, int minMark, int m
     //  Check if student exists and get their index
     for (int i = 0; i < studentCount; i++)
     {
-        if (students[i].Id == studentId)
+        if (students[i].getId() == studentId)
         {
             studentExists = true;
             studentIndex = i;
@@ -315,8 +317,8 @@ void updateStudentMarks(Student students[], int studentCount, int minMark, int m
         cout << "Enter new final exam: ";
         finalExam = validateInt(minMark, maxMark);
 
-        students[studentIndex].coursework = coursework;
-        students[studentIndex].finalExam = finalExam;
+        students[studentIndex].setCoursework(coursework);
+        students[studentIndex].setFinalExam(finalExam);
 
         cout << "\nStudent details updated successfully!\n\n";
 
