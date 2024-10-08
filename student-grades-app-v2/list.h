@@ -15,7 +15,7 @@ public:
 	List();
 	~List();
 
-	Node* getNode(Node* node, int i);
+	Node* getNode(int nodeIndex);
 
 	void appendNode(Node* node);
 	void removeNode(int i);
@@ -25,4 +25,5 @@ public:
 
 	void printList();
 	bool isEmpty();
+	void operator++(int);
 };

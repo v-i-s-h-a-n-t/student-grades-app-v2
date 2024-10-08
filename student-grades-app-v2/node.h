@@ -13,6 +13,7 @@ private:
 
 public:
 	Node();
+	Node(Student* student);
 	~Node();
 	
 	void setNext(Node* node);

@@ -12,10 +12,15 @@ Node::Node() {
 	cout << "Node default constructor" << endl;
 }
 
+Node::Node(Student* student) {
+	next = NULL;
+	prev = NULL;
+	this->student = student;
+}
+
 Node::~Node() {
-	delete next;
-	delete prev;
 	delete student;
+	cout << "Deleted Node" << endl;
 }
 
 void Node:: setNext(Node* node) {

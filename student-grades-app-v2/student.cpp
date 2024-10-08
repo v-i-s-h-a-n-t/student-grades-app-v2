@@ -10,8 +10,15 @@ Student::Student()
 	cout << "Student" << endl;
 }
 
+Student::Student(string id, double coursework, double finalExam) {
+	this->id = id;
+	this->coursework = coursework;
+	this->finalExam = finalExam;
+}
+
 Student::~Student()
 {
+    cout << "Deleted Student" << endl;
 }
 
 void Student::setId(string id)
@@ -44,5 +51,55 @@ double Student::getFinalExam()
 	return finalExam;
 }
 
+double Student::getTotalMark() {
+	return coursework + finalExam;
+}
+
+
+string Student::getGrade()
+{
+    const int GRADE_A_PLUS_MIN = 85;
+    const int GRADE_A_MIN = 78;
+    const int GRADE_B_PLUS_MIN = 71;
+    const int GRADE_B_MIN = 64;
+    const int GRADE_C_PLUS_MIN = 57;
+    const int GRADE_C_MIN = 50;
+    const int GRADE_D_MIN = 40;
+
+    double totalMark = coursework + finalExam;
+
+    if (totalMark >= GRADE_A_PLUS_MIN)
+    {
+        return "A+";
+    }
+    else if (totalMark >= GRADE_A_MIN)
+    {
+        return "A";
+    }
+    else if (totalMark >= GRADE_B_PLUS_MIN)
+    {
+        return "B+";
+    }
+    else if (totalMark >= GRADE_B_MIN)
+    {
+        return "B";
+    }
+    else if (totalMark >= GRADE_C_PLUS_MIN)
+    {
+        return "C+";
+    }
+    else if (totalMark >= GRADE_C_MIN)
+    {
+        return "C";
+    }
+    else if (totalMark >= GRADE_D_MIN)
+    {
+        return "D";
+    }
+    else
+    {
+        return "E";
+    }
+}
 
 
