@@ -7,24 +7,26 @@ using namespace std;
 List::List() {
 	head = NULL;
 	tail = NULL;
-
+	size = 0;
 	cout << "List default constructor" << endl;
 }
 
 List::~List() {
 	for(int i = 0; i < size; i++) {
-		removeNode(i);
+		removeNode(0);
 	}
+
+	cout << "Deleted List" << endl;
 }
 
-Node* List::getNode(Node* node, int i) {
-	if (i == 0) {
-		return node;
-	}
+Node* List::getNode(int nodeIndex) {
+	Node* node = head;
 
-	else {
-		return getNode(node->getNext(), i - 1);
-	}
+	for (int i = 0; i < nodeIndex; i++) {
+		node = node->getNext();
+	 }
+
+	return node;
 }
 
 void List::appendNode(Node* node) {
@@ -42,7 +44,7 @@ void List::appendNode(Node* node) {
 }
 
 void List::removeNode(int i) {
-	Node* nodeToRemove = getNode(head, i);
+	Node* nodeToRemove = getNode(i);
 
 	if (nodeToRemove->getPrev() == NULL) {
 		head = nodeToRemove->getNext();
@@ -84,4 +86,8 @@ void List::printList() {
 
 bool List::isEmpty() {
 	return head == NULL;
+}
+
+void List::operator++(int) {
+	size++;
 }

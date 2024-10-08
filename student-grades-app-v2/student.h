@@ -13,6 +13,7 @@ private:
 
 public:
 	Student();
+	Student(string id, double coursewworkd, double finalExma);
 	~Student();
 
 	void setId(string id);
@@ -23,6 +24,9 @@ public:
 
 	void setFinalExam(double finalExam);
 	double getFinalExam();
+	
+	double getTotalMark();
+	string getGrade();
 };
 
 

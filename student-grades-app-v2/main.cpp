@@ -14,25 +14,23 @@ const int ROW_WIDTH = 55;
 
 // ---------------------------- Prototypes ---------------------------- //
 
-void readData(string filename, Student students[], int& studentCount, int capacity);
+void readData(string filename, List* students, int capacity);
 
-void updateStudentMarks(Student students[], int studentCount, int minMark, int maxMark);
+void updateStudentMarks(List* students, int minMark, int maxMark);
 
-void printAllStudents(Student students[], int studentCount);
+void printAllStudents(List* students);
 
-void printTopStudents(Student students[], int studentCount);
+void printTopStudents(List* students);
 
-void printGradeStats(Student students[], int studentCount);
+void printGradeStats(List* students);
 
-string getGrade(double coursework, double finalExam);
+double getAverageMark(List* students);
 
-double getAverageMark(Student students[], int studentCount);
-
-double getPassRate(Student students[], int studentCount);
+double getPassRate(List* students);
 
 int validateInt(int lowerLimit, int upperLimit);
 
-void printTableRow(Student students);
+void printTableRow(Student* student);
 
 void printTableHeader();
 
@@ -53,7 +51,7 @@ int main()
     const int MAX_MARK = 50;
     const int CAPACITY = 100;
 
-    Student students[CAPACITY];
+    List* students = new List;
 
     bool continueRunning = true;
     int studentCount = 0;
@@ -68,7 +66,7 @@ int main()
         << "|                 Student Grades App                  |\n"
         << "+-----------------------------------------------------+\n\n";
 
-    readData(FILENAME, students, studentCount, CAPACITY);
+    readData(FILENAME, students, CAPACITY);
 
     while (continueRunning)
     {
@@ -85,19 +83,19 @@ int main()
         switch (menuChoice)
         {
         case MENU_OPTION_1:
-            printAllStudents(students, studentCount);
+            printAllStudents(students);
             break;
 
         case MENU_OPTION_2:
-            printTopStudents(students, studentCount);
+            printTopStudents(students);
             break;
 
         case MENU_OPTION_3:
-            printGradeStats(students, studentCount);
+            printGradeStats(students);
             break;
 
         case MENU_OPTION_4:
-            updateStudentMarks(students, studentCount, MIN_MARK, MAX_MARK);
+            updateStudentMarks(students, MIN_MARK, MAX_MARK);
             break;
 
         case MENU_OPTION_5:
@@ -107,20 +105,20 @@ int main()
         }
     }
 
+    delete students;
     return 0;
 }
 
 // ---------------------------- Functions ---------------------------- //
 
-void readData(string filename, Student students[], int& studentCount, int capacity)
+void readData(string filename, List* students, int capacity)
 {
-    bool isFull = studentCount == capacity;
+    bool isFull = students->getSize() == capacity;
     ifstream readFile(filename.c_str());
 
     if (readFile.fail())
     {
         cout << "Oops, could not open file: " << filename << endl;
-        exit(1);
     }
 
     string headerOmit;
@@ -133,12 +131,8 @@ void readData(string filename, Student students[], int& studentCount, int capaci
     // Fill array until capacity is not reached and data exists
     while (!isFull && readFile >> id >> coursework >> finalExam)
     {
-        students[studentCount].setId(id);
-        students[studentCount].setCoursework(coursework);
-        students[studentCount].setFinalExam(finalExam);
-    
-
-        studentCount++;
+        students->appendNode(new Node(new Student(id, coursework, finalExam)));
+        (*students)++;
     }
 
     readFile.close();
@@ -155,35 +149,33 @@ void printTableHeader()
 }
 
 // Helper function to print a table row (student details)
-void printTableRow(Student students)
+void printTableRow(Student* student)
 {
-    string grade = getGrade(students.getCoursework(), students.getFinalExam());
-
-    cout << setw(COL_WIDTH) << students.getId()
-        << setw(COL_WIDTH) << students.getCoursework()
-        << setw(COL_WIDTH) << students.getFinalExam()
-        << setw(COL_WIDTH) << grade << endl
+    cout << setw(COL_WIDTH) << student->getId()
+        << setw(COL_WIDTH) << student->getCoursework()
+        << setw(COL_WIDTH) << student->getFinalExam()
+        << setw(COL_WIDTH) << student->getGrade() << endl
         << printLine(ROW_WIDTH) << endl;
 }
 
-void printAllStudents(Student students[], int studentCount)
+void printAllStudents(List* students)
 {
     printTableHeader();
 
-    for (int i = 0; i < studentCount; i++)
+    for (int i = 0; i < students->getSize(); i++)
     {
-        printTableRow(students[i]);
+        printTableRow(students->getNode(i)->getStudent());
     }
 }
 
-void printTopStudents(Student students[], int studentCount)
+void printTopStudents(List* students)
 {
-    double highestMark = students[0].getCoursework() + students[0].getFinalExam();
+    double highestMark = students->getNode(0)->getStudent()->getTotalMark();
 
     //  Loop through all students and get highest mark
-    for (int i = 0; i < studentCount; i++)
+    for (int i = 0; i < students->getSize(); i++)
     {
-        double totalMark = students[i].getCoursework() + students[i].getFinalExam();
+         double totalMark = students->getNode(i)->getStudent()->getTotalMark();
 
         if (totalMark >= highestMark)
         {
@@ -194,44 +186,44 @@ void printTopStudents(Student students[], int studentCount)
     printTableHeader();
 
     // Loop through all students and print those with the highest mark
-    for (int i = 0; i < studentCount; i++)
+    for (int i = 0; i < students->getSize(); i++)
     {
-        double totalMark = students[i].getCoursework() + students[i].getFinalExam();
+        Student* student = students->getNode(i)->getStudent();
 
-        if (totalMark == highestMark)
+        if (student->getTotalMark() == highestMark)
         {
-            printTableRow(students[i]);
+            printTableRow(student);
         }
     }
 }
 
-void printGradeStats(Student students[], int studentCount)
+void printGradeStats(List* students)
 {
-    cout << "Average Mark: " << getAverageMark(students, studentCount) << endl;
-    cout << "Pass Rate: " << getPassRate(students, studentCount) << "%" << endl;
+    cout << "Average Mark: " << getAverageMark(students) << endl;
+    cout << "Pass Rate: " << getPassRate(students) << "%" << endl;
 }
 
-double getAverageMark(Student students[], int studentCount)
+double getAverageMark(List* students)
 {
     double totalMarks = 0.0;
 
-    for (int i = 0; i < studentCount; i++)
+    for (int i = 0; i < students->getSize(); i++)
     {
-        totalMarks += students[i].getCoursework() + students[i].getFinalExam();
+        totalMarks += students->getNode(i)->getStudent()->getTotalMark();
     }
 
-    return totalMarks / studentCount;
+    return totalMarks / students->getSize();
 }
 
-double getPassRate(Student students[], int studentCount)
+double getPassRate(List* students)
 {
     const int ONE_HUNDRED = 100;
 
     double passCount = 0.0;
 
-    for (int i = 0; i < studentCount; i++)
+    for (int i = 0; i < students->getSize(); i++)
     {
-        string grade = getGrade(students[i].getCoursework(), students[i].getFinalExam());
+        string grade = students->getNode(i)->getStudent()->getGrade();
 
         if (grade != "D" && grade != "E")
         {
@@ -239,56 +231,11 @@ double getPassRate(Student students[], int studentCount)
         }
     }
 
-    return (passCount / studentCount) * ONE_HUNDRED;
+    return (passCount / students->getSize()) * ONE_HUNDRED;
 }
 
-string getGrade(double coursework, double finalExam)
-{
-    const int GRADE_A_PLUS_MIN = 85;
-    const int GRADE_A_MIN = 78;
-    const int GRADE_B_PLUS_MIN = 71;
-    const int GRADE_B_MIN = 64;
-    const int GRADE_C_PLUS_MIN = 57;
-    const int GRADE_C_MIN = 50;
-    const int GRADE_D_MIN = 40;
 
-    double totalMark = coursework + finalExam;
-
-    if (totalMark >= GRADE_A_PLUS_MIN)
-    {
-        return "A+";
-    }
-    else if (totalMark >= GRADE_A_MIN)
-    {
-        return "A";
-    }
-    else if (totalMark >= GRADE_B_PLUS_MIN)
-    {
-        return "B+";
-    }
-    else if (totalMark >= GRADE_B_MIN)
-    {
-        return "B";
-    }
-    else if (totalMark >= GRADE_C_PLUS_MIN)
-    {
-        return "C+";
-    }
-    else if (totalMark >= GRADE_C_MIN)
-    {
-        return "C";
-    }
-    else if (totalMark >= GRADE_D_MIN)
-    {
-        return "D";
-    }
-    else
-    {
-        return "E";
-    }
-}
-
-void updateStudentMarks(Student students[], int studentCount, int minMark, int maxMark)
+void updateStudentMarks(List* students, int minMark, int maxMark)
 {
     bool studentExists = false;
     int studentIndex;
@@ -300,9 +247,11 @@ void updateStudentMarks(Student students[], int studentCount, int minMark, int m
     cin >> studentId;
 
     //  Check if student exists and get their index
-    for (int i = 0; i < studentCount; i++)
+    for (int i = 0; i < students->getSize(); i++)
     {
-        if (students[i].getId() == studentId)
+        Student* student = students->getNode(i)->getStudent();
+
+        if (student->getId() == studentId)
         {
             studentExists = true;
             studentIndex = i;
@@ -317,13 +266,15 @@ void updateStudentMarks(Student students[], int studentCount, int minMark, int m
         cout << "Enter new final exam: ";
         finalExam = validateInt(minMark, maxMark);
 
-        students[studentIndex].setCoursework(coursework);
-        students[studentIndex].setFinalExam(finalExam);
+        Student* student = students->getNode(studentIndex)->getStudent();
+
+        student->setCoursework(coursework);
+        student->setFinalExam(finalExam);
 
         cout << "\nStudent details updated successfully!\n\n";
 
         printTableHeader();
-        printTableRow(students[studentIndex]);
+        printTableRow(student);
     }
     else
     {
