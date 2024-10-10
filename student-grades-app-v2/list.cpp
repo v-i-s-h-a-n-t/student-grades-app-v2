@@ -87,7 +87,3 @@ void List::printList() {
 bool List::isEmpty() {
 	return head == NULL;
 }
-
-void List::operator++(int) {
-	size++;
-}

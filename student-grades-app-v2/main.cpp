@@ -132,7 +132,6 @@ void readData(string filename, List* students, int capacity)
     while (!isFull && readFile >> id >> coursework >> finalExam)
     {
         students->appendNode(new Node(new Student(id, coursework, finalExam)));
-        (*students)++;
     }
 
     readFile.close();

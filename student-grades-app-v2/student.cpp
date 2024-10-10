@@ -41,7 +41,7 @@ double Student::getCoursework()
 	return coursework;
 }
 
-void Student::setFinalExam(double coursework)
+void Student::setFinalExam(double finalExam)
 {
 	this->finalExam = finalExam;
 }
