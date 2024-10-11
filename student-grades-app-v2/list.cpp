@@ -80,5 +80,5 @@ template<typename T> bool List<T>::isEmpty() {
 }
 
 // explicit instantiation declaration for Student class 
-// (required since List classs is broken into .h and .cpp files)
+// (required since List classes is broken into .h and .cpp files)
 template class List<Student>;
