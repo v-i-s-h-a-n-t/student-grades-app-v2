@@ -4,25 +4,24 @@
 
 #include "student.h"
 
-class Node
-{
+template<typename T> class Node {
 private:
-	Node* next;
-	Node* prev;
-	Student* student;
+	Node<T>* next;
+	Node<T>* prev;
+	T* data;
 
 public:
 	Node();
-	Node(Student* student);
+	Node(T* data);
 	~Node();
 	
-	void setNext(Node* node);
-	Node* getNext();
+	void setNext(Node<T>* node);
+	Node<T>* getNext();
 
-	void setPrev(Node *node);
-	Node* getPrev();
+	void setPrev(Node<T>* node);
+	Node<T>* getPrev();
 
-	void setStudent(Student* student);
-	Student* getStudent();
+	void setData(T* data);
+	T* getData();
 };
 

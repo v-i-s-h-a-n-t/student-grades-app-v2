@@ -4,45 +4,49 @@
 
 using namespace std;
 
-Node::Node() {
+template<typename T> Node<T>::Node() {
 	next = NULL;
 	prev = NULL;
-	student = NULL;
+	data = NULL;
 
-	cout << "Node default constructor" << endl;
+	cout << "Created Node" << endl;
 }
 
-Node::Node(Student* student) {
+template<typename T> Node<T>::Node(T* data) {
 	next = NULL;
 	prev = NULL;
-	this->student = student;
+	this->data = data;
 }
 
-Node::~Node() {
-	delete student;
+template<typename T> Node<T>::~Node() {
+	delete data;
 	cout << "Deleted Node" << endl;
 }
 
-void Node:: setNext(Node* node) {
+template<typename T> void Node<T>::setNext(Node<T>* node) {
 	next = node;
 }
 
-Node* Node::getNext() {
+template<typename T> Node<T>* Node<T>::getNext() {
 	return next;
 }
 
-void Node::setPrev(Node* node) {
+template<typename T> void Node<T>::setPrev(Node<T>* node) {
 	prev = node;
 }
 
-Node* Node::getPrev() {
+template<typename T> Node<T>* Node<T>::getPrev() {
 	return prev;
 }
 
-void Node::setStudent(Student* student) {
-	this->student = student;
+template<typename T> void Node<T>::setData(T* data) {
+	this->data = data;
 }
 
-Student* Node::getStudent() {
-	return student;
+template<typename T> T* Node<T>::getData() {
+	return data;
 }
+
+// explicit instantiation declaration for Student class 
+// (required since Node classs is broken into .h and .cpp files)
+template class Node<Student>;
