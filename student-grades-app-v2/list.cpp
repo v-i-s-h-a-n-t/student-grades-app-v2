@@ -4,14 +4,14 @@
 
 using namespace std;
 
-List::List() {
+template<typename T> List<T>::List() {
 	head = NULL;
 	tail = NULL;
 	size = 0;
-	cout << "List default constructor" << endl;
+	cout << "Created List" << endl;
 }
 
-List::~List() {
+template<typename T> List<T>::~List() {
 	for(int i = 0; i < size; i++) {
 		removeNode(0);
 	}
@@ -19,8 +19,8 @@ List::~List() {
 	cout << "Deleted List" << endl;
 }
 
-Node* List::getNode(int nodeIndex) {
-	Node* node = head;
+template<typename T> Node<T>* List<T>::getNode(int nodeIndex) {
+	Node<T>* node = head;
 
 	for (int i = 0; i < nodeIndex; i++) {
 		node = node->getNext();
@@ -29,7 +29,7 @@ Node* List::getNode(int nodeIndex) {
 	return node;
 }
 
-void List::appendNode(Node* node) {
+template<typename T> void List<T>::appendNode(Node<T>* node) {
 	if (head == NULL) {      
 			head = node;         
 	}
@@ -43,8 +43,8 @@ void List::appendNode(Node* node) {
 	size++;
 }
 
-void List::removeNode(int i) {
-	Node* nodeToRemove = getNode(i);
+template<typename T> void List<T>::removeNode(int i) {
+	Node<T>* nodeToRemove = getNode(i);
 
 	if (nodeToRemove->getPrev() == NULL) {
 		head = nodeToRemove->getNext();
@@ -67,23 +67,18 @@ void List::removeNode(int i) {
 	size--;
 }
 
-void List::setSize(int size) {
+template<typename T>  void List<T>::setSize(int size) {
 	this->size = size;
 }
 
-int List::getSize() {
+template<typename T> int List<T>::getSize() {
 	return size;
 }
 
-void List::printList() {
-	Node* current = head;
-
-	while (current != NULL) {
-		cout << head->getStudent()->getId() << endl;
-		current = current->getNext();
-	}
-}
-
-bool List::isEmpty() {
+template<typename T> bool List<T>::isEmpty() {
 	return head == NULL;
 }
+
+// explicit instantiation declaration for Student class 
+// (required since List classs is broken into .h and .cpp files)
+template class List<Student>;

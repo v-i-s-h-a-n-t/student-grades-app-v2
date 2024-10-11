@@ -4,26 +4,23 @@
 
 #include "node.h"
 
-class List
-{
+template<typename T> class List {
 private:
-	Node* head;
-	Node* tail;
+	Node<T>* head;
+	Node<T>* tail;
 	int size;
 
 public:
 	List();
 	~List();
 
-	Node* getNode(int nodeIndex);
+	Node<T>* getNode(int nodeIndex);
 
-	void appendNode(Node* node);
+	void appendNode(Node<T>* node);
 	void removeNode(int i);
 
 	void setSize(int size);
 	int getSize();
 
-	void printList();
 	bool isEmpty();
-	void operator++(int);
 };
