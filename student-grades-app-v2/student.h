@@ -4,8 +4,7 @@
 #include <string> 
 using namespace std;
 
-class Student
-{
+class Student {
 private:
 	string id;
 	double coursework;
