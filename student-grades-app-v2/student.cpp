@@ -7,7 +7,10 @@ using  namespace std;
 
 Student::Student() 
 {
-	cout << "Student" << endl;
+    coursework = 0;
+    finalExam = 0;
+
+	cout << "Created Student" << endl;
 }
 
 Student::Student(string id, double coursework, double finalExam) {
@@ -54,7 +57,6 @@ double Student::getFinalExam()
 double Student::getTotalMark() {
 	return coursework + finalExam;
 }
-
 
 string Student::getGrade()
 {
