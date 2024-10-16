@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "list.h"
+#include "student.h"
 
 using namespace std;
 
@@ -8,64 +9,89 @@ template<typename T> List<T>::List() {
 	head = NULL;
 	tail = NULL;
 	size = 0;
-	cout << "Created List" << endl;
 }
 
 template<typename T> List<T>::~List() {
-	for(int i = 0; i < size; i++) {
-		removeNode(0);
+	// Remove all nodes
+	while(head != NULL) {
+		removeNode();
 	}
-
-	cout << "Deleted List" << endl;
 }
 
-template<typename T> Node<T>* List<T>::getNode(int nodeIndex) {
+// Get a node at specified index
+template<typename T> Node<T>* List<T>::getNode(int index) {
 	Node<T>* node = head;
 
-	for (int i = 0; i < nodeIndex; i++) {
+	for (int i = 0; i < index; i++) {
 		node = node->getNext();
 	 }
 
 	return node;
 }
 
-template<typename T> void List<T>::appendNode(Node<T>* node) {
+template<typename T> Node<T>* List<T>::getHead() {
+	return head;
+}	
+
+// Add a node to the end of the linked list
+template<typename T> void List<T>::appendNode(T* data) {
+	Node<T>* newNode = new Node<T>(data);
+
 	if (head == NULL) {      
-			head = node;         
+		head = newNode;         
 	}
 
 	else {
-		tail->setNext(node);
-		node->setPrev(tail);
+		tail->setNext(newNode);
+		newNode->setPrev(tail);
 	}
 
-	tail = node;
+	tail = newNode;
 	size++;
 }
 
-template<typename T> void List<T>::removeNode(int i) {
-	Node<T>* nodeToRemove = getNode(i);
-
-	if (nodeToRemove->getPrev() == NULL) {
-		head = nodeToRemove->getNext();
-	}
-
-	else {
-		nodeToRemove->getPrev()->setNext(nodeToRemove->getNext());
-	}
+// Remove a node from the beginning of the linked list
+template<typename T> void List<T>::removeNode() {
+	Node<T>* nodeToRemove = head;
 
 	if (nodeToRemove->getNext() == NULL) {
-		tail = nodeToRemove->getPrev();
+		head = NULL;
+		tail = NULL;
 	}
 
 	else {
-		nodeToRemove->getNext()->setPrev(nodeToRemove->getPrev());
+		head = nodeToRemove->getNext();
+		head->setPrev(NULL);
 	}
 
 	delete nodeToRemove;
 	nodeToRemove = NULL;
 	size--;
 }
+
+//template<typename T> void List<T>::removeNode(int i) {
+//	Node<T>* nodeToRemove = getNode(i);
+//
+//	if (nodeToRemove->getPrev() == NULL) {
+//		head = nodeToRemove->getNext();
+//	}
+//
+//	else {
+//		nodeToRemove->getPrev()->setNext(nodeToRemove->getNext());
+//	}
+//
+//	if (nodeToRemove->getNext() == NULL) {
+//		tail = nodeToRemove->getPrev();
+//	}
+//
+//	else {
+//		nodeToRemove->getNext()->setPrev(nodeToRemove->getPrev());
+//	}
+//
+//	delete nodeToRemove;
+//	nodeToRemove = NULL;
+//	size--;
+//}
 
 template<typename T>  void List<T>::setSize(int size) {
 	this->size = size;

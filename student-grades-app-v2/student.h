@@ -1,7 +1,7 @@
 #pragma once
 
-#include <iostream>
 #include <string> 
+
 using namespace std;
 
 class Student {
@@ -12,7 +12,7 @@ private:
 
 public:
 	Student();
-	Student(string id, double coursewworkd, double finalExma);
+	Student(string id, double coursework, double finalExma);
 	~Student();
 
 	void setId(string id);

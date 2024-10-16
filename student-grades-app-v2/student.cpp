@@ -7,10 +7,9 @@ using  namespace std;
 
 Student::Student() 
 {
-    coursework = 0;
-    finalExam = 0;
-
-	cout << "Created Student" << endl;
+    id = "0";
+    coursework = 0.0;
+    finalExam = 0.0;
 }
 
 Student::Student(string id, double coursework, double finalExam) {
@@ -19,10 +18,7 @@ Student::Student(string id, double coursework, double finalExam) {
 	this->finalExam = finalExam;
 }
 
-Student::~Student()
-{
-    cout << "Deleted Student" << endl;
-}
+Student::~Student(){}
 
 void Student::setId(string id)
 {
@@ -58,6 +54,7 @@ double Student::getTotalMark() {
 	return coursework + finalExam;
 }
 
+// Calaulalte student grade based on total mark
 string Student::getGrade()
 {
     const int GRADE_A_PLUS_MIN = 85;
@@ -68,7 +65,7 @@ string Student::getGrade()
     const int GRADE_C_MIN = 50;
     const int GRADE_D_MIN = 40;
 
-    double totalMark = coursework + finalExam;
+    double totalMark = this->getTotalMark();
 
     if (totalMark >= GRADE_A_PLUS_MIN)
     {

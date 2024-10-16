@@ -10,8 +10,6 @@ using namespace std;
 const int COL_WIDTH = 15;
 const int ROW_WIDTH = 55;
 
-// ---------------------------- Functions ---------------------------- //
-
 void readData(string filename, List<Student>* students, int capacity)
 {
     bool isFull = students->getSize() == capacity;
@@ -32,8 +30,7 @@ void readData(string filename, List<Student>* students, int capacity)
     // Fill array until capacity is not reached and data exists
     while (!isFull && readFile >> id >> coursework >> finalExam)
     {
-        // TODO: move node logic inside List (should not use Node<Student> outside List)
-        students->appendNode(new Node<Student>(new Student(id, coursework, finalExam)));
+        students->appendNode(new Student(id, coursework, finalExam));
     }
 
     readFile.close();
