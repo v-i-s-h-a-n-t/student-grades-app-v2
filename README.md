@@ -1,13 +1,13 @@
 # Student Grades App
 
-This CLI app was made as a part of assignment 2 for CS112 (Introduction to Data Structures and Algorithms) at the University of the South Pacific. The program is built using C++ and shows the advantages of user defined data types over built in data types. The user defined data types include a Student class, a generic Node class and a generic Link class. The Link class is used to manage Node classes, which hold the Student class as its data. Wrapper functions make use of the methods from the Link classs to perfoam varous tasks like printing all studnts in a table format.
+This CLI app was made as a part of assignment 2 for CS112 (Introduction to Data Structures and Algorithms) at the University of the South Pacific. The program is built using C++ and shows the advantages of user defined data types over built in data types. The user defined data types include a Student class, a generic Node class and a generic Link class. The Link class is used to manage Node classes, which hold the Student class as its data. Wrapper functions make use of the methods from the Link class to perform various tasks like printing all students in a table format.
 
 ## Features
 
-View all students' details - as a user, you can view all students' details in a table format
-View top student's details - as a user, you can view the top students' details in a table format
-View grade statistics - as a user, you can view the average mark and pass rate of all students
-Update student's marks - as a user, you can update the coursework and final exam marks of a student
+- View all students' details - as a user, you can view all students' details in a table format
+- View top student's details - as a user, you can view the top students' details in a table format
+- View grade statistics - as a user, you can view the average mark and pass rate of all students
+- Update student's marks - as a user, you can update the coursework and final exam marks of a student
 
 ## Edge Cases
 
@@ -21,11 +21,11 @@ Multiple Toppers - since users can update the grade of any student, there there 
 
 After running the program, you will be prompted to enter a choice that corresponds to a feature.
 
-Press 1 to view all students' details
-Press 2 to view top students' details
-Press 3 to view grade statistics
-Press 4 to update student's marks. You will be prompted to enter the student ID, new coursework, and new final exam marks
-Press 5 to exit the program
+- Press 1 to view all students' details
+- Press 2 to view top students' details
+- Press 3 to view grade statistics
+- Press 4 to update student's marks. You will be prompted to enter the student ID, new coursework, and new final exam marks
+- Press 5 to exit the program
 
 ## Authors
 
