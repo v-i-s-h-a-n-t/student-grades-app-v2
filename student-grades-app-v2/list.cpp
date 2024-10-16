@@ -9,18 +9,16 @@ template<typename T> List<T>::List() {
 	head = NULL;
 	tail = NULL;
 	size = 0;
-
-	cout << "Created List" << endl;
 }
 
 template<typename T> List<T>::~List() {
+	// Remove all nodes
 	while(head != NULL) {
 		removeNode();
 	}
-
-	cout << "Deleted List" << endl;
 }
 
+// Get a node at specified index
 template<typename T> Node<T>* List<T>::getNode(int index) {
 	Node<T>* node = head;
 
@@ -35,22 +33,24 @@ template<typename T> Node<T>* List<T>::getHead() {
 	return head;
 }	
 
+// Add a node to the end of the linked list
 template<typename T> void List<T>::appendNode(T* data) {
-	Node<T>* node = new Node<T>(data);
+	Node<T>* newNode = new Node<T>(data);
 
 	if (head == NULL) {      
-		head = node;         
+		head = newNode;         
 	}
 
 	else {
-		tail->setNext(node);
-		node->setPrev(tail);
+		tail->setNext(newNode);
+		newNode->setPrev(tail);
 	}
 
-	tail = node;
+	tail = newNode;
 	size++;
 }
 
+// Remove a node from the beginning of the linked list
 template<typename T> void List<T>::removeNode() {
 	Node<T>* nodeToRemove = head;
 

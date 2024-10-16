@@ -9,8 +9,6 @@ template<typename T> Node<T>::Node() {
 	next = NULL;
 	prev = NULL;
 	data = NULL;
-
-	cout << "Created Node" << endl;
 }
 
 template<typename T> Node<T>::Node(T* data) {
@@ -21,7 +19,6 @@ template<typename T> Node<T>::Node(T* data) {
 
 template<typename T> Node<T>::~Node() {
 	delete data;
-	cout << "Deleted Node" << endl;
 }
 
 template<typename T> void Node<T>::setNext(Node<T>* next) {

@@ -25,16 +25,14 @@ int main()
     const int MAX_MARK = 50;
     const int CAPACITY = 100;
 
-    List<Student> *students = new List<Student>;
-
     bool continueRunning = true;
     int studentCount = 0;
     int menuChoice;
 
+    List<Student> *students = new List<Student>;
+
     // Format output with left alignment and fixed decimal place
     cout << left << fixed << setprecision(DECIMAL_PRECISION);
-
-    // ------------------------- App Start ------------------------- //
 
     cout << "+-----------------------------------------------------+\n"
          << "|                 Student Grades App                  |\n"
