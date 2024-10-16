@@ -7,8 +7,9 @@ using  namespace std;
 
 Student::Student() 
 {
-    coursework = 0;
-    finalExam = 0;
+    id = "0";
+    coursework = 0.0;
+    finalExam = 0.0;
 
 	cout << "Created Student" << endl;
 }

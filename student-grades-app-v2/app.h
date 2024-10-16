@@ -6,8 +6,6 @@
 
 using namespace std;
 
-// ---------------------------- Prototypes ---------------------------- //
-
 void readData(string filename, List<Student>* students, int capacity);
 
 void updateStudentMarks(List<Student>* students, int minMark, int maxMark);

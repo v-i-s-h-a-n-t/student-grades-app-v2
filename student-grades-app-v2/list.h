@@ -14,10 +14,13 @@ public:
 	List();
 	~List();
 
-	Node<T>* getNode(int nodeIndex);
+	Node<T>* getNode(int index);
+	Node<T>* getHead();
 
-	void appendNode(Node<T>* node);
-	void removeNode(int i);
+	void appendNode(T* data);
+	void removeNode();
+
+	// void removeNode(int i);
 
 	void setSize(int size);
 	int getSize();

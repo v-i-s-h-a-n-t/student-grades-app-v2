@@ -2,8 +2,6 @@
 
 #include <iostream>
 
-#include "student.h"
-
 template<typename T> class Node {
 private:
 	Node<T>* next;
@@ -15,10 +13,10 @@ public:
 	Node(T* data);
 	~Node();
 	
-	void setNext(Node<T>* node);
+	void setNext(Node<T>* next);
 	Node<T>* getNext();
 
-	void setPrev(Node<T>* node);
+	void setPrev(Node<T>* prev);
 	Node<T>* getPrev();
 
 	void setData(T* data);

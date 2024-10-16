@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "node.h"
+#include "student.h"
 
 using namespace std;
 
@@ -23,16 +24,16 @@ template<typename T> Node<T>::~Node() {
 	cout << "Deleted Node" << endl;
 }
 
-template<typename T> void Node<T>::setNext(Node<T>* node) {
-	next = node;
+template<typename T> void Node<T>::setNext(Node<T>* next) {
+	this->next = next;
 }
 
 template<typename T> Node<T>* Node<T>::getNext() {
 	return next;
 }
 
-template<typename T> void Node<T>::setPrev(Node<T>* node) {
-	prev = node;
+template<typename T> void Node<T>::setPrev(Node<T>* prev) {
+	this->prev = prev;
 }
 
 template<typename T> Node<T>* Node<T>::getPrev() {
