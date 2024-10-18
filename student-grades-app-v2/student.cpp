@@ -7,7 +7,7 @@ using  namespace std;
 
 Student::Student() 
 {
-    id = "0";
+    id = "";
     coursework = 0.0;
     finalExam = 0.0;
 }
