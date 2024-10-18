@@ -3,9 +3,9 @@
 #include <string>
 #include <iomanip>
 
+#include "student.h"
 #include "node.h"
 #include "list.h"
-#include "student.h"
 #include "app.h"
 
 using namespace std;

@@ -10,7 +10,7 @@ using namespace std;
 const int COL_WIDTH = 15;
 const int ROW_WIDTH = 55;
 
-void readData(string filename, List<Student>* students, int capacity)
+void readData(string filename, List<Student> *students, int capacity)
 {
     bool isFull = students->getSize() == capacity;
     ifstream readFile(filename.c_str());
@@ -40,23 +40,23 @@ void readData(string filename, List<Student>* students, int capacity)
 void printTableHeader()
 {
     cout << setw(COL_WIDTH) << "Student ID"
-        << setw(COL_WIDTH) << "CW"
-        << setw(COL_WIDTH) << "Final"
-        << setw(COL_WIDTH) << "Grade" << endl
-        << printLine(ROW_WIDTH) << endl;
+         << setw(COL_WIDTH) << "CW"
+         << setw(COL_WIDTH) << "Final"
+         << setw(COL_WIDTH) << "Grade" << endl
+         << printLine(ROW_WIDTH) << endl;
 }
 
 // Helper function to print a table row (student details)
-void printTableRow(Student* student)
+void printTableRow(Student *student)
 {
     cout << setw(COL_WIDTH) << student->getId()
-        << setw(COL_WIDTH) << student->getCoursework()
-        << setw(COL_WIDTH) << student->getFinalExam()
-        << setw(COL_WIDTH) << student->getGrade() << endl
-        << printLine(ROW_WIDTH) << endl;
+         << setw(COL_WIDTH) << student->getCoursework()
+         << setw(COL_WIDTH) << student->getFinalExam()
+         << setw(COL_WIDTH) << student->getGrade() << endl
+         << printLine(ROW_WIDTH) << endl;
 }
 
-void printAllStudents(List<Student>* students)
+void printAllStudents(List<Student> *students)
 {
     printTableHeader();
 
@@ -66,7 +66,7 @@ void printAllStudents(List<Student>* students)
     }
 }
 
-void printTopStudents(List<Student>* students)
+void printTopStudents(List<Student> *students)
 {
     double highestMark = students->getNode(0)->getData()->getTotalMark();
 
@@ -86,7 +86,7 @@ void printTopStudents(List<Student>* students)
     // Loop through all students and print those with the highest mark
     for (int i = 0; i < students->getSize(); i++)
     {
-        Student* student = students->getNode(i)->getData();
+        Student *student = students->getNode(i)->getData();
 
         if (student->getTotalMark() == highestMark)
         {
@@ -95,13 +95,13 @@ void printTopStudents(List<Student>* students)
     }
 }
 
-void printGradeStats(List<Student>* students)
+void printGradeStats(List<Student> *students)
 {
     cout << "Average Mark: " << getAverageMark(students) << endl;
     cout << "Pass Rate: " << getPassRate(students) << "%" << endl;
 }
 
-double getAverageMark(List<Student>* students)
+double getAverageMark(List<Student> *students)
 {
     double totalMarks = 0.0;
 
@@ -113,7 +113,7 @@ double getAverageMark(List<Student>* students)
     return totalMarks / students->getSize();
 }
 
-double getPassRate(List<Student>* students)
+double getPassRate(List<Student> *students)
 {
     const int ONE_HUNDRED = 100;
 
@@ -132,7 +132,7 @@ double getPassRate(List<Student>* students)
     return (passCount / students->getSize()) * ONE_HUNDRED;
 }
 
-void updateStudentMarks(List<Student>* students, int minMark, int maxMark)
+void updateStudentMarks(List<Student> *students, int minMark, int maxMark)
 {
     bool studentExists = false;
     int studentIndex;
@@ -146,7 +146,7 @@ void updateStudentMarks(List<Student>* students, int minMark, int maxMark)
     //  Check if student exists and get their index
     for (int i = 0; i < students->getSize(); i++)
     {
-        Student* student = students->getNode(i)->getData();
+        Student *student = students->getNode(i)->getData();
 
         if (student->getId() == studentId)
         {
@@ -163,7 +163,7 @@ void updateStudentMarks(List<Student>* students, int minMark, int maxMark)
         cout << "Enter new final exam: ";
         finalExam = validateInt(minMark, maxMark);
 
-        Student* student = students->getNode(studentIndex)->getData();
+        Student *student = students->getNode(studentIndex)->getData();
 
         student->setCoursework(coursework);
         student->setFinalExam(finalExam);
@@ -173,6 +173,7 @@ void updateStudentMarks(List<Student>* students, int minMark, int maxMark)
         printTableHeader();
         printTableRow(student);
     }
+
     else
     {
         cout << "\nOops, student Id: " << studentId << " was not found" << endl;

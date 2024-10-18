@@ -2,24 +2,25 @@
 
 #include <iostream>
 
-template<typename T> class Node {
+template <class T>
+class Node
+{
 private:
-	Node<T>* next;
-	Node<T>* prev;
-	T* data;
+    Node<T> *next;
+    Node<T> *prev;
+    T *data;
 
 public:
-	Node();
-	Node(T* data);
-	~Node();
-	
-	void setNext(Node<T>* next);
-	Node<T>* getNext();
+    Node();
+    Node(T *data);
+    ~Node();
 
-	void setPrev(Node<T>* prev);
-	Node<T>* getPrev();
+    void setNext(Node<T> *next);
+    Node<T> *getNext();
 
-	void setData(T* data);
-	T* getData();
+    void setPrev(Node<T> *prev);
+    Node<T> *getPrev();
+
+    void setData(T *data);
+    T *getData();
 };
-
