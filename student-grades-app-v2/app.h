@@ -6,6 +6,10 @@
 
 using namespace std;
 
+void printHeader();
+
+void printMenu();
+
 void readData(string filename, List<Student> *students, int capacity);
 
 void updateStudentMarks(List<Student> *students, int minMark, int maxMark);

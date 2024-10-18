@@ -34,19 +34,13 @@ int main()
     // Format output with left alignment and fixed decimal place
     cout << left << fixed << setprecision(DECIMAL_PRECISION);
 
-    cout << "+-----------------------------------------------------+\n"
-         << "|                 Student Grades App                  |\n"
-         << "+-----------------------------------------------------+\n\n";
+    printHeader();
 
     readData(FILENAME, students, CAPACITY);
 
     while (continueRunning)
     {
-        cout << "\n1. View all students' details" << endl
-             << "2. View top students' details" << endl
-             << "3. View grade statistics" << endl
-             << "4. Update student's marks" << endl
-             << "5. Exit\n\n";
+        printMenu();
 
         cout << "Enter choice: ";
         menuChoice = validateInt(MIN_MENU_OPTION, MAX_MENU_OPTION);

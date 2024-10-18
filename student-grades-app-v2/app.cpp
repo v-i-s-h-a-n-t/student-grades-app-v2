@@ -10,6 +10,22 @@ using namespace std;
 const int COL_WIDTH = 15;
 const int ROW_WIDTH = 55;
 
+void printHeader()
+{
+    cout << "+-----------------------------------------------------+\n"
+        << "|                 Student Grades App                  |\n"
+        << "+-----------------------------------------------------+\n\n";
+}
+
+void printMenu()
+{
+    cout << "\n1. View all students' details" << endl
+        << "2. View top students' details" << endl
+        << "3. View grade statistics" << endl
+        << "4. Update student's marks" << endl
+        << "5. Exit\n\n";
+}
+
 void readData(string filename, List<Student> *students, int capacity)
 {
     bool isFull = students->getSize() == capacity;
@@ -140,7 +156,7 @@ void updateStudentMarks(List<Student> *students, int minMark, int maxMark)
     double coursework;
     double finalExam;
 
-    cout << "Enter student Id: ";
+    cout << "Enter Student Id: ";
     cin >> studentId;
 
     //  Check if student exists and get their index
@@ -176,7 +192,7 @@ void updateStudentMarks(List<Student> *students, int minMark, int maxMark)
 
     else
     {
-        cout << "\nOops, student Id: " << studentId << " was not found" << endl;
+        cout << "\nOops, Student Id: " << studentId << " was not found" << endl;
     }
 }
 

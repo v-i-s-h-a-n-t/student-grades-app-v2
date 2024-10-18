@@ -12,7 +12,8 @@ Student::Student()
     finalExam = 0.0;
 }
 
-Student::Student(string id, double coursework, double finalExam) {
+Student::Student(string id, double coursework, double finalExam) 
+{
 	this->id = id;
 	this->coursework = coursework;
 	this->finalExam = finalExam;
@@ -54,7 +55,7 @@ double Student::getTotalMark() {
 	return coursework + finalExam;
 }
 
-// Calaulalte student grade based on total mark
+// Calculate student grade based on total mark
 string Student::getGrade()
 {
     const int GRADE_A_PLUS_MIN = 85;

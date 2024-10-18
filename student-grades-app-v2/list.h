@@ -17,7 +17,7 @@ public:
     ~List();
 
     Node<T> *getNode(int index);
-     int getSize();
+    int getSize();
 
     void appendNode(T *data);
     void removeNode();  

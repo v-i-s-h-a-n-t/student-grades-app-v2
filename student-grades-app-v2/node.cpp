@@ -66,5 +66,5 @@ T *Node<T>::getData()
 // explicit instantiation declaration for Student class
 template class Node<Student>;
 
-// (required since Node classs is broken into .h and .cpp files)
+// (required since Node classes is broken into .h and .cpp files)
 // https://www.geeksforgeeks.org/why-can-templates-only-be-implemented-in-the-header-file/
