@@ -2,6 +2,11 @@
 
 This CLI app was made as a part of assignment 2 for CS112 (Introduction to Data Structures and Algorithms) at the University of the South Pacific. The program is built using C++ and shows the advantages of user defined data types over built in data types. The user defined data types include a Student class, a generic Node class and a generic Link class. The Link class is used to manage Node classes, which hold the Student class as its data. Wrapper functions make use of the methods from the Link class to perform various tasks like printing all students in a table format.
 
+## Final Build
+
+This program was built using Microsoft Visual Studio. The final application (.exe file) can be found in the `x64/Debug` directory. The data file, `studentData.txt`, is placed both in the `student-grades-app-v2/student-grades-app-v2` directory for development, and in the `x64/Debug` directory for the final build.
+`
+
 ## Features
 
 - View all students' details - as a user, you can view all students' details in a table format
@@ -15,7 +20,7 @@ This program is built to handle a few edge cases to provide a good user experien
 
 Input validation - all inputs are validate, meaning users cannot enter values that are not of the correct data type or values that are outside a specific range (e.g. menu choice is set to take in values only from 1 to 5).
 
-Multiple Toppers - since users can update the grade of any student, there there are cases when multiple highest scorers exists. This program accommodates for that and displays all the students with the highest mark.
+Multiple toppers - since users can update the grade of any student, there there are cases when multiple highest scorers exists. This program accommodates for that and displays all the students with the highest mark.
 
 ## User Manual
 
