@@ -3,6 +3,11 @@ Student Grades App
 
  This CLI app was made as a part of assignment 2 for CS112 (Introduction to Data Structures and Algorithms) at the University of the South Pacific. The program is built using C++ and shows the advantages of user defined data types over built in data types. The user defined data types include a Student class, a generic Node class and a generic Link class. The Link class is used to manage Node classes, which hold the Student class as its data. Wrapper functions make use of the methods from the Link class to perform various tasks like printing all students in a table format.
 
+Final Build
+-----------
+
+This program was built using Microsoft Visual Studio. The final application (.exe file) can be found in the "x64/Debug" directory. The data file, "studentData.txt", is placed both in the "student-grades-app-v2/student-grades-app-v2" directory for development, and in the "x64/Debug" directory for the final build.
+
 Features
 --------
 
