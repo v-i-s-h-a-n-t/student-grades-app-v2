@@ -8,6 +8,19 @@ Final Build
 
 This program was built using Microsoft Visual Studio. The final application (.exe file) can be found in the "x64/Debug" directory. The data file, "studentData.txt", is placed both in the "student-grades-app-v2/student-grades-app-v2" directory for development, and in the "x64/Debug" directory for the final build.
 
+Source Code
+-----------
+
+The code files are located in this directory. These files include:
+
+main.cpp
+student.h
+student.cpp
+node.h
+node.cpp
+list.h
+list.cpp
+
 Features
 --------
 
